@@ -1,0 +1,80 @@
+﻿<Window x:Class="NGP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NGP"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="Nork GUI Program" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Name="FirstStackPanel" Orientation="Horizontal" >
+            <StackPanel Orientation="Vertical" Margin="20 0 0 0" >
+                <Button Content="save" Margin="0 0 0 3" Click="SaveNeauralNetwork" Width="90" />
+                <Button Content="open .nns" Margin="0 0 0 6" Click="OpenNeuralNetwork" Width="90" />
+                <Button Content="open .dts" Click="OpenDataset" Width="90" />
+                <Label Content="input neurons" Margin="0 2 0 0" />
+                <Label Content="output neurons" />
+                <Label Content="frames" />
+                <Label Content="learning time" />
+                <Label Content="type" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" >
+                <Button Content="save as" Click="SaveAsNeuralNetwork" Width="90" />
+                <Label Name="OpenedNeuralNetworkNameLabel" Content="No file" />
+                <Label Name="OpenedDatasetNameLabel" Content="No dataset" />
+                <Label Name="InputNeuronsCountLabel" />
+                <Label Name="OutputNeuronsCountLabel" />
+                <Label Name="DatasetFramesCountLabel" />
+                <Label Name="LearningTimeLabel" />
+                <Label Name="NeuralNetworkTypeLabel" />
+            </StackPanel>
+        </StackPanel>
+        <oxy:PlotView Name="NeuralNetworkChart" Grid.Row="1" Grid.Column="0" ></oxy:PlotView>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="0 0 20 0" >
+            <Label Content="Learn with:" />
+            <Viewbox Height="16" HorizontalAlignment="Left" Margin="5 0 0 5" >
+                <RadioButton GroupName="LearningMode" Content="Eras" IsChecked="true" />
+            </Viewbox>
+            <Viewbox Height="16" HorizontalAlignment="Left" Margin="5 0 0 5" >
+                <RadioButton GroupName="LearningMode" Content="Error" Checked="LearnWithErrorChecked" />
+            </Viewbox>
+            <Viewbox Height="16" HorizontalAlignment="Left" Margin="5 0 0 5" >
+                <RadioButton GroupName="LearningMode" Content="Accurancy" Checked="LearnWithAccurancyChecked" />
+            </Viewbox>
+            <TextBox TextChanged="OnLearningTargetChange" PreviewTextInput="NumberValidationTextBox" Margin="0 0 0 10" />
+            <Button Content="clear" Click="ClearButtonClicked" Margin="0 0 0 10" />
+            <Button Name="LearnButton" Content="learn" Click="LearnButtonClicked" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
+            <StackPanel Orientation="Vertical" >
+                <Label Content="Learning speed" />
+                <Label Content="Moment" />
+                <Label Content="Iteration" />
+                <Label Content="Era" />
+                <Label Name="ErrorNameLabel" Content="Error" />
+                <Label Content="Iteration time" />
+                <Label Content="Era time" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" >
+                <Label Name="LearningSpeedLabel" />
+                <Label Name="MomentLabel" />
+                <Label Name="IterationLabel" Content="0" />
+                <Label Name="EraLabel" Content="0" />
+                <Label Name="ErrorLabel" Content="0" />
+                <Label Name="IterationTimeLabel" Content="0" />
+                <Label Name="EraTimeLabel" Content="0" />
+            </StackPanel>
+        </StackPanel>
+
+        <Label Content="v1.1.2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>
